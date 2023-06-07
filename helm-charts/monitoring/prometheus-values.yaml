@@ -1,0 +1,16 @@
+server:
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 200m
+      memory: 300Mi
+    requests:
+      cpu: 100m
+      memory: 50Mi
+
+alertmanager:
+  enabled: false
+
+pushgateway:
+  enabled: false
+
