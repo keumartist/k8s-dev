@@ -1,4 +1,4 @@
-project_id   = "k8s-dev-cluster"
+project_id   = "keumartist-k8s-dev"
 cluster_name = "k8s-dev-cluster"
 region       = "asia-northeast3"
 zones        = ["asia-northeast3-a", "asia-northeast3-b", "asia-northeast3-c"]
@@ -14,7 +14,7 @@ ip_range_services_cidr = "10.2.0.0/16"
 
 node_pool = {
   name               = "default-node-pool"
-  machine_type       = "e2-micro"
+  machine_type       = "e2-small"
   min_count          = 1
   max_count          = 3
   disk_size_gb       = 10
