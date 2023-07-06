@@ -1,0 +1,11 @@
+secrets:
+  PRIVATE_KEY_PATH: "dummy"
+  SECRET_KEY_PATH: "/etc/keys/secret.key"
+  ISSUER: "dummy"
+  MYSQL_CONNECTION_STRING: "dummy"
+  GOOGLE_OAUTH_CLIENT_ID: "dummy"
+  GOOGLE_OAUTH_CLIENT_SECRET: "dummy"
+  AWS_REGION: "dummy"
+  SENDER_EMAIL: "dummy"
+  PRIVATE_KEY: "dummy"
+  SECRET_KEY: "dummy"

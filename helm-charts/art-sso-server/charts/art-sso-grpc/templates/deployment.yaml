@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels: 
+    app: art-sso-grpc
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: art-sso-grpc
+  template:
+    metadata:
+      labels:
+        app: art-sso-grpc
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: grpc
+              containerPort: 50051
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          envFrom:
+            - secretRef:
+                name: art-sso-secret
+          volumeMounts:
+            - name: secret-volume
+              mountPath: "/etc/keys"
+              readOnly: true
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: art-sso-secret
+      imagePullSecrets:
+        - name: gcr-json-key3
