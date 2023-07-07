@@ -26,3 +26,8 @@ node_pool = {
   preemptible        = false
   initial_node_count = 1
 }
+
+# instance name, db name, db user, db password는 환경변수를 통해 주입한다.
+mysql_version       = "MYSQL_5_7"
+mysql_settings_tier = "db-f1-micro"
+mysql_ipv4_enabled  = true

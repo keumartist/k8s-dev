@@ -41,3 +41,18 @@ module "gke" {
 
   depends_on = [module.vpc, module.subnet]
 }
+
+module "mysql" {
+  source = "../modules/db"
+
+  instance_name    = var.mysql_instance_name
+  database_version = var.mysql_version
+  settings_tier    = var.mysql_settings_tier
+  ipv4_enabled     = var.mysql_ipv4_enabled
+  database_name    = var.mysql_name
+  sql_user         = var.mysql_user
+  sql_password     = var.mysql_password
+  project_id       = var.project_id
+  region           = var.region
+
+}

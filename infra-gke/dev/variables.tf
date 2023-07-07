@@ -70,3 +70,32 @@ variable "ip_range_services_cidr" {
   description = "The IP CIDR range of the secondary IP range for Services."
   type        = string
 }
+
+# Mysql Vars
+variable "mysql_instance_name" {
+  description = "The name of the SQL instance"
+}
+
+variable "mysql_version" {
+  description = "The database version of the SQL instance"
+}
+
+variable "mysql_settings_tier" {
+  description = "The tier of the SQL instance"
+}
+
+variable "mysql_ipv4_enabled" {
+  description = "Boolean value for enabling/disabling IPv4 for the SQL instance"
+}
+
+variable "mysql_name" {
+  description = "The name of the database"
+}
+
+variable "mysql_user" {
+  description = "The SQL user name"
+}
+
+variable "mysql_password" {
+  description = "The SQL password"
+}
