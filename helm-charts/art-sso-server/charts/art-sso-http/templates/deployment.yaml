@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: art-sso-http
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: art-sso-http
+  template:
+    metadata:
+      labels:
+        app: art-sso-http
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3000
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          envFrom:
+            - secretRef:
+                name: art-sso-secret
+            - secretRef:
+                name: gcloud-sql-key2
+          volumeMounts:
+            - name: secret-volume
+              mountPath: "/etc/keys"
+              readOnly: true
+        - name: cloud-sql-proxy
+          image: {{ .Values.cloudsql.image }}
+          command: {{- toYaml .Values.cloudsql.command | nindent 12 }}
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: art-sso-secret
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: gcloud-sql-key
+      imagePullSecrets:
+        - name: gcr-json-key3
