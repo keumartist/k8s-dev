@@ -1,0 +1,4 @@
+apiVersion: v2
+name: art-item-http
+description: A Helm chart for the http server of ART SSO
+version: 0.1.0

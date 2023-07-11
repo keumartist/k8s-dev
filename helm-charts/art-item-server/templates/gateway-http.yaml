@@ -1,0 +1,39 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: http-art-item-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+    - {{ .Values.gateway.host }}
+    tls:
+      mode: SIMPLE
+      credentialName: {{ .Values.certificate.secretName }}
+  - port: 
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - {{ .Values.gateway.host }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: http-art-item-virtual-service
+spec:
+  hosts:
+    - {{ .Values.gateway.host }}
+  gateways:
+    - http-art-item-gateway
+  http:
+    - route:
+        - destination:
+            host: {{ .Values.gateway.target.http }}
+            port:
+              number: 80

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: art-item-http
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: art-item-http
+  template:
+    metadata:
+      labels:
+        app: art-item-http
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3000
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.secrets.name }}
+          volumeMounts:
+          - name: cert
+            mountPath: /etc/tls
+            readOnly: true
+      volumes:
+      - name: cert
+        secret:
+          secretName: {{ .Values.secrets.certificate.secretName }}
+      imagePullSecrets:
+        - name: gcr-json-key3

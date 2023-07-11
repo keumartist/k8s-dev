@@ -1,0 +1,17 @@
+secrets:
+  MONGODB_URI: "mongodb+srv://dummy_user:dummy_password@dummy-server.mongodb.net/?retryWrites=true&w=majority" 
+  AUTH_SERVICE_ENDPOINT: "dummy-service.dummy-namespace.svc.cluster.local:50051"
+  MONGODB_DATABASE: "dummy-database"
+  TLS_CA_PATH: "/etc/dummy-path/dummy.crt"
+  NAME: "dummy-secret"
+
+gateway:
+  target:
+    http: dummy-http-service
+  host: "dummy-host.io"
+
+certificate:
+  email: "dummy-email@domain.com"
+  name: "dummy-certificate-name"
+  secretName: "dummy-secret-name"
+  dnsName: "dummy-domain-name.io"

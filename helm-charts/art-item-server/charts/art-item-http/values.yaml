@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: dummy
+  tag: dummy
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 300Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+secrets:
+  name: "dummy"
+  certificate:
+    secretName: "dummy"
+    
