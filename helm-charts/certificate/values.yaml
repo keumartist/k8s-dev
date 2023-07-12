@@ -1,10 +1,16 @@
 cert-manager:
   install: true
   clusterResource: true
-  email: keumartist.dev@gmail.com
+  email: "dummy"
   acmeServer: https://acme-v02.api.letsencrypt.org/directory
   privateKeySecretRef: letsencrypt-prod
   solvers:
     - http01:
         ingress:
           class: nginx
+
+certificate:
+  email: "dummy"
+  name: "dummy"
+  secretName: "dummy"
+  dnsName: "dummy"
