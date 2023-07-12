@@ -31,13 +31,5 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.secrets.name }}
-          volumeMounts:
-          - name: cert
-            mountPath: /etc/tls
-            readOnly: true
-      volumes:
-      - name: cert
-        secret:
-          secretName: {{ .Values.secrets.certificate.secretName }}
       imagePullSecrets:
         - name: gcr-json-key3
