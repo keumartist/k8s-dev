@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: dummy
-  tag: v1
+  repository: "dummy"
+  tag: "dummy"
   pullPolicy: IfNotPresent
 
 service:
@@ -18,8 +18,8 @@ resources:
     memory: 128Mi
 
 cloudsql:
-  image: dummy
+  image: "dummy"
   command:
     - /cloud_sql_proxy
     - -instances=dummy
-    - -credential_file=/secrets/cloudsql/credentials.json
+    - -credential_file=dummy

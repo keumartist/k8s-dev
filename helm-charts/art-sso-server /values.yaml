@@ -1,5 +1,5 @@
 secrets:
-  PRIVATE_KEY_PATH: "dummy"
+  PRIVATE_KEY_PATH: "/etc/keys/private.pem"
   SECRET_KEY_PATH: "/etc/keys/secret.key"
   ISSUER: "dummy"
   MYSQL_CONNECTION_STRING: "dummy"
@@ -9,3 +9,14 @@ secrets:
   SENDER_EMAIL: "dummy"
   PRIVATE_KEY: "dummy"
   SECRET_KEY: "dummy"
+  AWS_ACCESS_KEY_ID: "dummy"
+  AWS_SECRET_ACCESS_KEY: "dummy"
+
+gateway:
+  target:
+    grpc: art-sso-grpc
+    http: art-sso-http
+  host: "dummy"
+
+certificate:
+  secretName: "dummy"
