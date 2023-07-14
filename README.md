@@ -7,3 +7,7 @@ This directory contains the Terraform code to provision and manage Google Cloud 
 
 **helm-charts/** : Kubernetes and Helm Templates
 This directory houses our Kubernetes templates which includes the necessary system elements and application deployment configurations.
+
+### Architecture Overview
+
+![architecture-image](https://github.com/keumartist/msa-k8s-infra/assets/54926767/d1e77554-985b-48bd-988e-cbe5a14fd535)
